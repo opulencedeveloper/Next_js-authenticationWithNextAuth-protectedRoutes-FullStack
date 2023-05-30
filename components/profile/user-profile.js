@@ -5,7 +5,6 @@ import ProfileForm from "./profile-form";
 import classes from "./user-profile.module.css";
 
 function UserProfile() {
-  //this check was done in getServersideProps, which runs in every request
   //useSession() rebuild this component anytime, session or loadind changes
 
   //const { data: session, status: loading } = useSession();

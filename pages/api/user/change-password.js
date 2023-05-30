@@ -14,16 +14,10 @@ async function handler(req, res) {
     return;
   }
 
-  //when we created a user or logged in a user, we stored the email of the user in req obj
-  //and returned to the client, so the email in the req obj
-  //this line of code => return {email: user.email}. this code is where we passed
-  //the users email to the req obj, this code is in the [...nextauth] file
-  //so we access that email here
 
   const userEmail = session.user.email;
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
-  //you can check if this data above is available, just for validation
 
   const client = await connectToDatabase();
   const usersCollection = client.db().collection("users");
@@ -48,9 +42,6 @@ async function handler(req, res) {
 
   const hashedPassword = await hashPassword(newPassword);
 
-  //the first obj here finds the document,
-  //the second obj updated that document that the first Obj found
-  //you can add error-handling here
   const result = await usersCollection.updateOne(
     { email: userEmail },
     { $set: { password: hashedPassword } }

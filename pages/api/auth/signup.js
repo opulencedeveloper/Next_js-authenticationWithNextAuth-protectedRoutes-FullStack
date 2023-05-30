@@ -1,5 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import { hashPassword } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 
@@ -28,8 +26,6 @@ async function handler(req, res) {
     }
 
     const hashedPassword = await hashPassword(password);
-
-    //result comtains the Id of this currently inserted document
     const result = await db.collection("users").insertOne({
       email: email,
       password: hashedPassword,

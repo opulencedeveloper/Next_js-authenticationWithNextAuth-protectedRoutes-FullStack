@@ -41,19 +41,11 @@ function AuthForm() {
     //no validation added
 
     if (isLogin) {
-      //signIn is a fn from the next-auth package
-      //we specify how we are signing in, where google, facebook etc.
-      //since we are using email and password, we specify it as 'crendentials'
-      //setting redirect to false, prevents this package from redirecting
-      //us to its error page if we throw an error on the server
       const result = await signIn("credentials", {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
       });
-      //console.log(result);
-//next-auth  gets and stores the token(cookies) it generated to the browser by itself
-//and uses that token on every request we make, when we navigate 
       if (!result.error) {
         router.replace('/profile');
       }
